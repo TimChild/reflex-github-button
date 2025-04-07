@@ -2,7 +2,11 @@
 
 A Reflex custom component github-button.
 
+Wraps [react-github-btn](https://www.npmjs.com/package/react-github-btn)
+
 See a demo [here](https://reflex-github-button.adventuresoftim.com).
+
+See full customization options [here](buttons.github.io/)
 
 Or clone and run the demo locally.
 
