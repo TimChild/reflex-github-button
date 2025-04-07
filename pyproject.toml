@@ -38,5 +38,7 @@ dev = [
     "pre-commit>=4.2.0",
     "pyright>=1.1.396",
     "pytest>=8.3.5",
+    "pytest-playwright>=0.7.0",
+    "pytest-pretty>=1.2.0",
     "ruff>=0.9.10",
 ]

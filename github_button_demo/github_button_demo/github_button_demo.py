@@ -44,12 +44,15 @@ def gh_button(
     show_count: bool = False,
     repo: str | None = "reflex-github-button",
 ) -> rx.Component:
-    return github_button(
-        button_type=button_type,
-        owner="TimChild",
-        repo=repo,
-        show_count=show_count,
-        dynamic_color_mode=True,
+    return rx.box(
+        # github_button(
+        #     button_type=button_type,
+        #     owner="TimChild",
+        #     repo=repo,
+        #     show_count=show_count,
+        #     dynamic_color_mode=True,
+        # ),
+        data_testid=f"gh-button-{button_type}",
     )
 
 

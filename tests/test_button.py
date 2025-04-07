@@ -38,5 +38,19 @@ def test_render(page: Page):
 
     I.e. Check components are visible.
     """
-    page.pause()
-    _ = expect
+    for button_type in [
+        "follow",
+        "sponsor",
+        "watch",
+        "star",
+        "fork",
+        "issue",
+        "discuss",
+        "download",
+        "install this package",
+        "use this template",
+        "use this github action",
+    ]:
+        expect(
+            page.get_by_test_id(f"gh-button-{button_type}").locator("span").nth(1)
+        ).to_be_visible()
