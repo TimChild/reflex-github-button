@@ -1,0 +1,56 @@
+name: Deploy Demo to VPS
+
+on:
+  workflow_run:
+    workflows: ["Publish"]
+    types:
+      - completed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository == 'TimChild/reflex-github-button' }}
+    environment:
+      name: demo
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy frontend
+        uses: TimChild/webserver-template/actions/deploy-reflex-frontend@main
+        with:
+          vps-ip: ${{ vars.VPS_IP }}
+          site-name: ${{ vars.SITE_NAME }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-user: "webadmin"
+          working-directory: github_button_demo
+  #
+  # deploy-backend:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository == 'TimChild/reflex-github-button' }}
+  #   environment:
+  #     name: demo
+  #   permissions:
+  #     contents: read
+  #     packages: write
+  #
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Deploy backend
+  #       uses: TimChild/webserver-template/actions/deploy-reflex-backend@main
+  #       with:
+  #         vps-ip: ${{ vars.VPS_IP }}
+  #         site-name: ${{ vars.SITE_NAME }}
+  #         dotenv-path: .env
+  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         ssh-user: "webadmin"
+  #         working-directory: github_button_demo
