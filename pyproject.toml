@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reflex-github-button"
+version = "0.0.1"
+description = "Reflex custom component github-button"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "", email = "YOUREMAIL@domain.com" }]
+keywords = ["reflex","reflex-custom-components"]
+
+dependencies = ["reflex>=0.7.5"]
+
+classifiers = ["Development Status :: 4 - Beta"]
+
+[project.urls]
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[tool.setuptools.packages.find]
+where = ["custom_components"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint]
+extend-select = ["I", "RUF", "T20"]
+ignore = ["RUF012"]
+
+[dependency-groups]
+dev = [
+    "playwright>=1.51.0",
+    "pre-commit>=4.2.0",
+    "pyright>=1.1.396",
+    "pytest>=8.3.5",
+    "ruff>=0.9.10",
+]
