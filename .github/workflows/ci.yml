@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-versions: ["3.10", "3.11", "3.12", "3.13"]
+    environment:
+      name: demo
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-versions }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.6.13"
+
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run lint
+        run: task lint
+
+      - name: Run typecheck
+        run: task typecheck
+
+      - name: Initialize Reflex
+        run: uv run reflex init
+        working-directory: github_button_demo
+
+      - name: Install playwright
+        run: uv run playwright install chromium
+
+      - name: Run tests
+        run: task test
