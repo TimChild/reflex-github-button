@@ -2,15 +2,27 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[tool.setuptools.packages.find]
+where = ["custom_components"]
+
+[tool.setuptools.dynamic]
+version = { attr = "reflex_github_button.__version__" }
+
+[tool.hatch.version]
+path = "custom_components/reflex_github_button/__init__.py"
+
 [project]
 name = "reflex-github-button"
-version = "0.0.1"
 description = "Reflex custom component github-button"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
 authors = [{ name = "", email = "YOUREMAIL@domain.com" }]
 keywords = ["reflex","reflex-custom-components"]
+dynamic = ["version"]
 
 dependencies = ["reflex>=0.7.5"]
 
@@ -26,16 +38,10 @@ classifiers = [
 ]
 
 [project.urls]
-# documentation = "https://timchild.github.io/reflex-github-buttons/about/"
-repository = "https://github.com/TimChild/reflex-github-buttons"
-issues = "https://github.com/TimChild/reflex-github-buttons/issues"
-homepage = "https://reflex-github-buttons-demo.adventuresoftim.com"
-
-[project.optional-dependencies]
-dev = ["build", "twine"]
-
-[tool.setuptools.packages.find]
-where = ["custom_components"]
+# documentation = "https://timchild.github.io/reflex-github-button/about/"
+repository = "https://github.com/TimChild/reflex-github-button"
+issues = "https://github.com/TimChild/reflex-github-button/issues"
+homepage = "https://reflex-github-button-demo.adventuresoftim.com"
 
 [tool.pyright]
 venvPath = "."
