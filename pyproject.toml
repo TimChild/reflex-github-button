@@ -14,9 +14,22 @@ keywords = ["reflex","reflex-custom-components"]
 
 dependencies = ["reflex>=0.7.5"]
 
-classifiers = ["Development Status :: 4 - Beta"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Typing :: Typed",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: Apache Software License",
+    # "Framework :: Reflex",  # Should be added once this is accepted
+]
 
 [project.urls]
+# documentation = "https://timchild.github.io/reflex-github-buttons/about/"
+repository = "https://github.com/TimChild/reflex-github-buttons"
+issues = "https://github.com/TimChild/reflex-github-buttons/issues"
+homepage = "https://reflex-github-buttons-demo.adventuresoftim.com"
 
 [project.optional-dependencies]
 dev = ["build", "twine"]
