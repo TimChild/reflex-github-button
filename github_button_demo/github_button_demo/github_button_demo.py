@@ -7,12 +7,6 @@ from rxconfig import config
 filename = f"{config.app_name}/{config.app_name}.py"
 
 
-class State(rx.State):
-    """The app state."""
-
-    pass
-
-
 CODE_EXAMPLE = """
 from reflex_github_button import github_button
 
@@ -45,13 +39,13 @@ def gh_button(
     repo: str | None = "reflex-github-button",
 ) -> rx.Component:
     return rx.box(
-        # github_button(
-        #     button_type=button_type,
-        #     owner="TimChild",
-        #     repo=repo,
-        #     show_count=show_count,
-        #     dynamic_color_mode=True,
-        # ),
+        github_button(
+            button_type=button_type,
+            owner="TimChild",
+            repo=repo,
+            show_count=show_count,
+            dynamic_color_mode=False,  # Note: True requires backend
+        ),
         data_testid=f"gh-button-{button_type}",
     )
 
@@ -91,6 +85,9 @@ def index() -> rx.Component:
             ),
             rx.text(
                 "You can also set the color scheme and choose between small and large."
+            ),
+            rx.text(
+                "If running with a backend, use dynamic_color_mode=True to match the reflex color theme."
             ),
             align="center",
             spacing="7",
