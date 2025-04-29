@@ -160,4 +160,3 @@ def github_button(
         aria_label=aria,
         **props,
     )
-
