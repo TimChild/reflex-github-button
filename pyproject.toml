@@ -16,15 +16,15 @@ path = "custom_components/reflex_github_button/__init__.py"
 
 [project]
 name = "reflex-github-button"
-description = "Reflex custom component github-button"
+description = "Reflex custom component wrapping react-github-btn"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
-authors = [{ name = "", email = "YOUREMAIL@domain.com" }]
+authors = [{ name = "Tim Child", email = "timjchild@gmail.com" }]
 keywords = ["reflex","reflex-custom-components"]
 dynamic = ["version"]
 
-dependencies = ["reflex>=0.7.5"]
+dependencies = ["reflex==0.7.5"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -60,4 +60,5 @@ dev = [
     "pytest-playwright>=0.7.0",
     "pytest-pretty>=1.2.0",
     "ruff>=0.9.10",
+    "uvicorn>=0.34.2",
 ]
