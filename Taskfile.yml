@@ -41,14 +41,17 @@ tasks:
   bump-patch:
     cmds:
       - uv run hatch version patch
+      - uv lock
 
   bump-minor:
     cmds:
       - uv run hatch version minor
+      - uv lock
 
   bump-major:
     cmds:
       - uv run hatch version major
+      - uv lock
 
   publish:
     preconditions:
@@ -75,7 +78,8 @@ tasks:
         msg: "PYPI_TOKEN is not set -- Add PYPI_TOKEN=... to .env file"
     cmds:
       - echo "Publishing to PyPI"
-      - uv run reflex component publish --no-validate-project-info --no-share --token $PYPI_TOKEN
+      - uv run reflex component build
+      - uv publish --token $PYPI_TOKEN
 
   # manual-publish-docs:
   #   cmds:
